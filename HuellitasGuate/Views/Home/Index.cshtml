@@ -2,7 +2,35 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+<div class="jumbotron">
+    <h1>Huellitas Guatemala</h1>
+    
+    <h1>Gracias Por Confiar en nosotros!</h1>
+    <!-- Aquí puedes agregar cualquier otro contenido de tu página -->
+    <img src="https://esteticacaninamovilcdmx.com/wp-content/uploads/2022/08/Este%CC%81tica-Canina-Mo%CC%81vil-CDMX2-scaled.jpg" alt="Logo de la Veterinaria" class="logo-veterinaria">
+    <!-- Asegúrate de reemplazar "URL_DE_LA_IMAGEN" con la URL de tu imagen -->
+
+    <h2>
+        Welcome
+        <b>@User.Identity.Name</b>
+
+        
+    </h2>
+    <p class="lead">Has iniciado Sesion.</p>
+    <p><a href="https://goo.gl/maps/SjUsMsijugZu4YHM8" class="btn btn-primary btn-large">Visitanos &raquo;</a></p>
 </div>
+
+
+<style>
+    .logo-veterinaria {
+        width: 150px; /* Ancho deseado */
+        height: 150px; /* Altura deseada */
+        border-radius: 50%; /* Forma redonda (si deseas) */
+        border: 2px solid #3498db; /* Borde (puedes personalizar el color) */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra (opcional) */
+    }
+</style>
+

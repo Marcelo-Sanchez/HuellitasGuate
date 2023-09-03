@@ -1,0 +1,28 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HuellitasGuate.Models
+{
+    public partial class Cita
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string? Nombre { get; set; }
+
+        public string? Mascota { get; set; }
+
+        public string? Servicio { get; set; }
+
+        public string? Telefono { get; set; }
+
+        public DateTime? Fecha { get; set; }
+
+        public int? Dpi { get; set; }
+
+        public string? Correo { get; set; }
+
+        public string? Descripcion { get; set; }
+
+
+    }
+}

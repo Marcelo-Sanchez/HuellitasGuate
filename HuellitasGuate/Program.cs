@@ -22,7 +22,7 @@ else
 builder.Services.AddDbContext<HuellitasGuateContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<HuellitasGuateUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<HuellitasGuateUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<HuellitasGuateContext>();
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();

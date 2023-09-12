@@ -24,7 +24,7 @@ namespace HuellitasGuate.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Citas != null ? 
-                          View(await _context.Citas.ToListAsync()) :
+                          View(await _context.Citas.OrderByDescending(x => x.Fecha).ToListAsync()) :
                           Problem("Entity set 'HuellitasGuateContext.Citas'  is null.");
         }
 

@@ -5,7 +5,19 @@ using HuellitasGuate.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("HuellitasGuateContextConnection") ?? throw new InvalidOperationException("Connection string 'HuellitasGuateContextConnection' not found.");
+string connectionString = string.Empty;
+
+
+if (builder.Configuration.GetConnectionString("env") == "local")
+{
+    connectionString = builder.Configuration.GetConnectionString("HuellitasGuateContextConnection");
+}
+
+else
+{
+    connectionString = builder.Configuration.GetConnectionString("HuellitasGuateDevContextConnection");
+}
+
 
 builder.Services.AddDbContext<HuellitasGuateContext>(options =>
     options.UseSqlServer(connectionString));
@@ -40,3 +52,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+

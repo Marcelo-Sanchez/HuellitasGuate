@@ -1,8 +1,7 @@
 ﻿@page
 @model LoginModel
-
 @{
-    ViewData["Title"] = "-Ingresa tus credenciales-";
+    ViewData["Title"] = "W E L C O M E";
 }
 
 <style>
@@ -51,10 +50,22 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
+
+    .image-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .image-container img {
+            max-width: 200px;
+        }
 </style>
 
 <div class="container">
     <h1>@ViewData["Title"]</h1>
+    <div class="image-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png" alt="Imagen" class="img-fluid" />
+    </div>
     <form id="account" method="post">
         <div class="form-group">
             <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Email">
@@ -71,17 +82,17 @@
             </div>
         </div>
         <div class="form-group">
-            <button id="login-submit" type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
+            <button id="login-submit" type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
         </div>
     </form>
     <p>
-        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+        <a id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>
     </p>
     <p>
-        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrarse como nuevo usuario</a>
     </p>
     <p>
-        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Reenviar confirmación de correo electrónico</a>
     </p>
 </div>
 

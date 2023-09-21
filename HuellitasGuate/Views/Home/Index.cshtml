@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using HuellitasGuate.Areas.Identity.Data
+
+@inject SignInManager<HuellitasGuateUser> SignInManager
+@inject UserManager<HuellitasGuateUser> UserManager
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -51,8 +57,13 @@
         <img src="https://esteticacaninamovilcdmx.com/wp-content/uploads/2022/08/Este%CC%81tica-Canina-Mo%CC%81vil-CDMX2-scaled.jpg" alt="Logo de la Veterinaria" class="logo-veterinaria">
         <h1>Huellitas Guatemala</h1>
         <h2>Gracias Por Confiar en nosotros!</h2>
-        <h2>Welcome <b>@User.Identity.Name</b></h2>
-        <p class="lead">Has iniciado Sesión.</p>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <h2>Welcome <b>@User.Identity.Name</b></h2>
+            <p class="lead">Has iniciado Sesión.</p>
+        }
+
+        
         <p><a href="https://goo.gl/maps/SjUsMsijugZu4YHM8" class="btn btn-primary btn-lg">Visítanos &raquo;</a></p>
     </div>
 </body>

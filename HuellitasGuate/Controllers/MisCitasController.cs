@@ -7,25 +7,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HuellitasGuate.Data;
 using HuellitasGuate.Models;
+using Microsoft.AspNetCore.Identity;
+using HuellitasGuate.Areas.Identity.Data;
 
 namespace HuellitasGuate.Controllers
 {
     public class MisCitasController : Controller
     {
         private readonly HuellitasGuateContext _context;
+        private readonly UserManager <HuellitasGuateUser> _userManager;
 
-        public MisCitasController(HuellitasGuateContext context)
+        public MisCitasController(HuellitasGuateContext context, UserManager<HuellitasGuateUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
         // GET: MisCitas
         public async Task<IActionResult> Index()
         {
-              return _context.Citas != null ? 
-                          View(await _context.Citas.ToListAsync()) :
-                          Problem("Entity set 'HuellitasGuateContext.Citas'  is null.");
+            // Obtiene el usuario actualmente autenticado
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                // Filtra las citas relacionadas con el usuario actual
+                var userCitas = await _context.Citas
+                    .Where(c => c.Correo == user.Email)
+                    .ToListAsync();
+
+                return View(userCitas);
+            }
+            else
+            {
+                return Problem("Usuario no autenticado.");
+            }
         }
+
 
         // GET: MisCitas/Details/5
         public async Task<IActionResult> Details(int? id)

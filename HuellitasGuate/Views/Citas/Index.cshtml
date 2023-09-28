@@ -15,24 +15,19 @@
         }
 
         .container {
-            background-color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .card {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             padding: 20px;
-            margin-top: 20px;
+            background-color: #fff;
         }
 
         h1 {
             color: #007bff;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        .table th, .table td {
-            vertical-align: middle;
-            text-align: center;
         }
 
         .btn {
@@ -80,41 +75,24 @@
             <a asp-action="Create" class="btn btn-primary">Crear Nueva Cita</a>
         </p>
 
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Mascota</th>
-                    <th>Servicio</th>
-                    <th>Teléfono</th>
-                    <th>Fecha</th>
-                    <th>DPI</th>
-                    <th>Correo</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Mascota)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Servicio)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Dpi)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Correo)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <h4>@item.Nombre</h4>
+                <p><strong>Mascota:</strong> @item.Mascota</p>
+                <p><strong>Servicio:</strong> @item.Servicio</p>
+                <p><strong>Teléfono:</strong> @item.Telefono</p>
+                <p><strong>Fecha:</strong> @item.Fecha</p>
+                <p><strong>DPI:</strong> @item.Dpi</p>
+                <p><strong>Correo:</strong> @item.Correo</p>
+                <p><strong>Descripción:</strong> @item.Descripcion</p>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        }
     </div>
 
 </body>

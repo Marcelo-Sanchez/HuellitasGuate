@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"]</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -18,7 +19,7 @@
         }
 
         .jumbotron {
-            background-color: #3498db;
+            background-color: #007bff; /* Cambia el color de fondo */
             color: #fff;
             text-align: center;
             padding: 80px;
@@ -50,21 +51,107 @@
             background-color: #3498db;
             border-color: #3498db;
         }
+
+        /* Estilos adicionales para los servicios y citas */
+        .services {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .service-text {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .appointment {
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .appointment-title {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .appointment-text {
+            font-size: 16px;
+            color: #777;
+        }
     </style>
 </head>
 <body>
     <div class="jumbotron">
         <img src="https://esteticacaninamovilcdmx.com/wp-content/uploads/2022/08/Este%CC%81tica-Canina-Mo%CC%81vil-CDMX2-scaled.jpg" alt="Logo de la Veterinaria" class="logo-veterinaria">
         <h1>Huellitas Guatemala</h1>
-        <h2>Gracias Por Confiar en nosotros!</h2>
+        <h2>Tu Compañero de Confianza en Cuidado Animal</h2>
         @if (SignInManager.IsSignedIn(User))
         {
-            <h2>Welcome <b>@User.Identity.Name</b></h2>
+            <h2>Bienvenido <b>@User.Identity.Name</b></h2>
             <p class="lead">Has iniciado Sesión.</p>
         }
 
-        
         <p><a href="https://goo.gl/maps/SjUsMsijugZu4YHM8" class="btn btn-primary btn-lg">Visítanos &raquo;</a></p>
     </div>
+
+    <!-- Sección de Servicios -->
+    <div class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="fas fa-stethoscope service-icon"></i>
+                    <h3 class="service-title">Atención Veterinaria</h3>
+                    <p class="service-text">Ofrecemos atención médica de alta calidad para tu mascota. Nuestros veterinarios están capacitados y comprometidos con el bienestar de los animales.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-heartbeat service-icon"></i>
+                    <h3 class="service-title">Cuidado y Amor</h3>
+                    <p class="service-text">Tu mascota merece amor y cuidado. En Huellitas Guatemala, tratamos a cada animal con cariño y respeto.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-calendar-check service-icon"></i>
+                    <h3 class="service-title">Citas en Línea</h3>
+                    <p class="service-text">Programa una cita fácilmente a través de nuestro sitio web. Estamos disponibles para ti y tu mascota.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Citas -->
+    <div class="appointment">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="appointment-title">Programa tu Cita</h2>
+                    <p class="appointment-text">Nuestro equipo de veterinarios está listo para cuidar de tu mascota. Programa una cita hoy mismo y asegúrate de que tu amigo peludo reciba la atención que se merece.</p>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <p><a href="/MisCitas" class="btn btn-primary">Agendar Cita &raquo;</a></p>
+                    }
+                    else
+                    {
+                        <p><a href="/Identity/Account/Login" class="btn btn-primary">Agendar Cita &raquo;</a></p>
+                    }
+                   
+                </div>
+                <div class="col-md-6">
+                    
+                    <img src="/images/logovet.png" alt="Programa tu Cita" class="img-fluid" style="width: 200px; float: right;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -49,6 +49,8 @@ namespace HuellitasGuate.Controllers
         // GET: Citas/Create
         public IActionResult Create()
         {
+            // Cargar la lista de servicios disponibles
+            ViewBag.Servicios = new SelectList(_context.Servicios, "Id", "Nombre");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace HuellitasGuate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Mascota,Servicio,Telefono,Fecha,Dpi,Correo,Descripcion")] Cita cita)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Mascota,ServicioId,Telefono,Fecha,Dpi,Correo,Descripcion")] Cita cita)
         {
             if (ModelState.IsValid)
             {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HuellitasGuate.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,23 +49,18 @@ namespace HuellitasGuate.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Citas",
+                name: "Servicios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mascota = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Servicio = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Dpi = table.Column<int>(type: "int", nullable: true),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Precio = table.Column<float>(type: "real", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Citas", x => x.Id);
+                    table.PrimaryKey("PK_Servicios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,6 +169,32 @@ namespace HuellitasGuate.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Citas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mascota = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ServicioId = table.Column<int>(type: "int", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Dpi = table.Column<int>(type: "int", nullable: true),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Citas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Citas_Servicios_ServicioId",
+                        column: x => x.ServicioId,
+                        principalTable: "Servicios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -212,6 +233,11 @@ namespace HuellitasGuate.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Citas_ServicioId",
+                table: "Citas",
+                column: "ServicioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -239,6 +265,9 @@ namespace HuellitasGuate.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Servicios");
         }
     }
 }

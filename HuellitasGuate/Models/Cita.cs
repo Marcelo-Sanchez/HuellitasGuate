@@ -11,7 +11,9 @@ namespace HuellitasGuate.Models
 
         public string? Mascota { get; set; }
 
-        public string? Servicio { get; set; }
+        [Display(Name = "Servicio")]
+        public int ServicioId { get; set; }
+        public virtual Servicio Servicio { get; set; }
 
         public string? Telefono { get; set; }
 

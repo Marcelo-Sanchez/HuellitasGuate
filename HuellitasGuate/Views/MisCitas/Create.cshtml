@@ -4,65 +4,75 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="mb-0">Nueva Cita</h1>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-<h4>Cita</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label for="Nombre" class="form-label">Nombre Completo</label>
+                            <input asp-for="Nombre" class="form-control" id="Nombre" required />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Mascota" class="form-label">Nombre de la Mascota</label>
+                            <input asp-for="Mascota" class="form-control" id="Mascota" required />
+                            <span asp-validation-for="Mascota" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Servicio" class="form-label">Tipo de Servicio</label>
+                            <input asp-for="Servicio" class="form-control" id="Servicio" required />
+                            <span asp-validation-for="Servicio" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Telefono" class="form-label">Teléfono</label>
+                            <input asp-for="Telefono" class="form-control" id="Telefono" required />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Fecha" class="form-label">Fecha de la Cita</label>
+                            <input asp-for="Fecha" type="date" class="form-control" id="Fecha" required />
+                            <span asp-validation-for="Fecha" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Dpi" class="form-label">Número de DPI</label>
+                            <input asp-for="Dpi" class="form-control" id="Dpi" required />
+                            <span asp-validation-for="Dpi" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Correo" class="form-label">Correo Electrónico</label>
+                            <input asp-for="Correo" class="form-control" id="Correo" required />
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Descripcion" class="form-label">Descripción</label>
+                            <textarea asp-for="Descripcion" class="form-control" id="Descripcion" rows="4" required></textarea>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">Crear Cita</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Mascota" class="control-label"></label>
-                <input asp-for="Mascota" class="form-control" />
-                <span asp-validation-for="Mascota" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Servicio" class="control-label"></label>
-                <input asp-for="Servicio" class="form-control" />
-                <span asp-validation-for="Servicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dpi" class="control-label"></label>
-                <input asp-for="Dpi" class="form-control" />
-                <span asp-validation-for="Dpi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Regresar a la Lista de Citas</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

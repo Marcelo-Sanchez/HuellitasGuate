@@ -1,0 +1,32 @@
+﻿@model IEnumerable<HuellitasGuate.Models.Servicio>
+
+@{
+    ViewData["Title"] = "Servicios Veterinarios";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Si tienes un diseño compartido (layout) definido.
+}
+
+<div class="container">
+    <h1 class="my-4">Nuestros Servicios Veterinarios</h1>
+
+    <div class="row">
+        @foreach (var servicio in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@servicio.Nombre</h5>
+                        <p class="card-text">@servicio.Descripcion</p>
+                        <p class="card-price">Q.@servicio.Precio</p>
+                        <a href="@Url.Action("Details", new { id = servicio.Id })" class="btn btn-primary">Detalles</a>
+                        <a href="@Url.Action("Edit", new { id = servicio.Id })" class="btn btn-warning">Editar</a>
+                        <a href="@Url.Action("Delete", new { id = servicio.Id })" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <p class="mt-4">
+        <a asp-action="Create" class="btn btn-success">Agregar Nuevo Servicio</a>
+    </p>
+</div>

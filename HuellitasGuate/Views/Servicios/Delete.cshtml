@@ -1,0 +1,36 @@
+﻿@model HuellitasGuate.Models.Servicio
+
+@{
+    ViewData["Title"] = "Eliminar Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Si tienes un diseño compartido (layout) definido.
+}
+
+<div class="container">
+    <h1 class="my-4">Eliminar Servicio</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="alert alert-danger">
+                <h3>¿Estás seguro de que deseas eliminar este servicio?</h3>
+                <p>Una vez eliminado, no podrás recuperarlo.</p>
+            </div>
+            <div class="mb-3">
+                <h4>Servicio</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-3">Nombre:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+                    <dt class="col-sm-3">Descripción:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
+                    <dt class="col-sm-3">Precio:</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Precio)</dd>
+                </dl>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

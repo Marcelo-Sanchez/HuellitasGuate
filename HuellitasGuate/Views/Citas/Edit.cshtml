@@ -102,15 +102,16 @@
 
                     <div class="form-group">
                         <label asp-for="Dpi" class="control-label">DPI</label>
-                        <input asp-for="Dpi" class="form-control" pattern="[0-9]{12}" title="Ingresa un DPI válido" />
+                        <input asp-for="Dpi" class="form-control" pattern="[0-9]{13}" title="Ingresa un DPI válido" />
                         <span asp-validation-for="Dpi" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Correo" class="control-label">Correo</label>
-                        <input asp-for="Correo" class="form-control" />
+                        <label asp-for="Correo" class="control-label">Correo Electrónico</label>
+                        <input asp-for="Correo" class="form-control" type="email" />
                         <span asp-validation-for="Correo" class="text-danger"></span>
                     </div>
+
 
                     <div class="form-group">
                         <label asp-for="Descripcion" class="control-label">Descripción</label>

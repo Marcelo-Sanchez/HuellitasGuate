@@ -101,8 +101,9 @@ namespace HuellitasGuate.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Dpi")
-                        .HasColumnType("int");
+                    b.Property<string>("Dpi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");

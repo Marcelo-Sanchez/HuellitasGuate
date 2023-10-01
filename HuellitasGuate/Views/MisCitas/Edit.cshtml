@@ -22,19 +22,21 @@
                     <input asp-for="Mascota" class="form-control" />
                     <span asp-validation-for="Mascota" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label for="Servicio" class="form-label">Servicio</label>
-                    <input asp-for="Servicio" class="form-control" />
-                    <span asp-validation-for="Servicio" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="ServicioId" class="control-label">Servicio</label>
+                    <select asp-for="ServicioId" asp-items="ViewBag.Servicios" class="form-control">
+                        <option value="">Selecciona un servicio</option>
+                    </select>
+                    <span asp-validation-for="ServicioId" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="Telefono" class="form-label">Teléfono</label>
                     <input asp-for="Telefono" class="form-control" />
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label for="Fecha" class="form-label">Fecha</label>
-                    <input asp-for="Fecha" type="date" class="form-control" />
+                <div class="form-group">
+                    <label asp-for="Fecha" class="control-label">Fecha</label>
+                    <input asp-for="Fecha" class="form-control" />
                     <span asp-validation-for="Fecha" class="text-danger"></span>
                 </div>
                 <div class="mb-3">

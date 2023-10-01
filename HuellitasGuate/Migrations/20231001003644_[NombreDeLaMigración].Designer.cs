@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HuellitasGuate.Migrations
 {
     [DbContext(typeof(HuellitasGuateContext))]
-    [Migration("20230930040224_initialcreate")]
-    partial class initialcreate
+    [Migration("20231001003644_[NombreDeLaMigración]")]
+    partial class NombreDeLaMigración
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,8 +103,9 @@ namespace HuellitasGuate.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Dpi")
-                        .HasColumnType("int");
+                    b.Property<string>("Dpi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("datetime2");

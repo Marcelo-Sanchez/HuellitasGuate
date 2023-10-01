@@ -19,7 +19,7 @@ namespace HuellitasGuate.Models
 
         public DateTime? Fecha { get; set; }
 
-        public int? Dpi { get; set; }
+        public string Dpi { get; set; }
 
         public string? Correo { get; set; }
 

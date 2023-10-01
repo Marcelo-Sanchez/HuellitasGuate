@@ -42,6 +42,7 @@ namespace HuellitasGuate.Controllers
 
             var cita = await _context.Citas
                 .FirstOrDefaultAsync(m => m.Id == id);
+            cita.Servicio = await _context.Servicios.FindAsync(cita.ServicioId);
             if (cita == null)
             {
                 return NotFound();
@@ -82,6 +83,10 @@ namespace HuellitasGuate.Controllers
             }
 
             var cita = await _context.Citas.FindAsync(id);
+            cita.Servicio = await _context.Servicios.FindAsync(cita.ServicioId);
+            // Cargar la lista de servicios disponibles
+            ViewBag.Servicios = new SelectList(_context.Servicios, "Id", "Nombre");
+            
             if (cita == null)
             {
                 return NotFound();
@@ -94,15 +99,14 @@ namespace HuellitasGuate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Mascota,Servicio,Telefono,Fecha,Dpi,Correo,Descripcion")] Cita cita)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Mascota,ServicioId,Telefono,Fecha,Dpi,Correo,Descripcion")] Cita cita)
         {
             if (id != cita.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     _context.Update(cita);
@@ -120,7 +124,7 @@ namespace HuellitasGuate.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(cita);
         }
 
@@ -134,6 +138,7 @@ namespace HuellitasGuate.Controllers
 
             var cita = await _context.Citas
                 .FirstOrDefaultAsync(m => m.Id == id);
+            cita.Servicio = await _context.Servicios.FindAsync(cita.ServicioId);
             if (cita == null)
             {
                 return NotFound();

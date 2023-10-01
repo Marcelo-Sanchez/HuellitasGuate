@@ -17,15 +17,16 @@
             <div class="col-md-4 mb-4">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">@Html.DisplayFor(modelItem => item.Servicio)</h5>
+                        <h5 class="mb-0">@Html.DisplayFor(modelItem => item.Servicio.Nombre)</h5>
                     </div>
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Fecha)</h6>
                         <p class="card-text">
                             <strong>Nombre:</strong> @Html.DisplayFor(modelItem => item.Nombre)<br />
                             <strong>Mascota:</strong> @Html.DisplayFor(modelItem => item.Mascota)<br />
-                            <strong>Servicio:</strong> @Html.DisplayFor(modelItem => item.Servicio)<br />
+                            <strong>Servicio:</strong> @Html.DisplayFor(modelItem => item.Servicio.Nombre)<br />
                             <strong>Teléfono:</strong> @Html.DisplayFor(modelItem => item.Telefono)<br />
+                            <strong>Fecha:</strong> @Html.DisplayFor(modelItem => item.Fecha)<br />
                             <strong>DPI:</strong> @Html.DisplayFor(modelItem => item.Dpi)<br />
                             <strong>Correo:</strong> @Html.DisplayFor(modelItem => item.Correo)<br />
                             <strong>Descripción:</strong> @Html.DisplayFor(modelItem => item.Descripcion)<br />

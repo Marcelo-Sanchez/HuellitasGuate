@@ -30,7 +30,7 @@ public class Program
 
         builder.Services.AddDefaultIdentity<HuellitasGuateUser>(options =>
         {
-            options.SignIn.RequireConfirmedAccount = false;
+            options.SignIn.RequireConfirmedAccount = true;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireDigit = false;
             options.Password.RequireLowercase = false;

@@ -47,11 +47,12 @@
                             <span asp-validation-for="Fecha" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="Dpi" class="form-label">Número de DPI</label>
-                            <input asp-for="Dpi" class="form-control" id="Dpi" required />
+                        <div class="form-group">
+                            <label asp-for="Dpi" class="control-label">DPI</label>
+                            <input asp-for="Dpi" class="form-control" pattern="[0-9]{12}" title="Ingresa un DPI válido" />
                             <span asp-validation-for="Dpi" class="text-danger"></span>
                         </div>
+                       
 
                         <div class="mb-3">
                             <label for="Correo" class="form-label">Correo Electrónico</label>

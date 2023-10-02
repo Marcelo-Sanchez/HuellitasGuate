@@ -10,15 +10,15 @@ namespace HuellitasGuate.Areas.Identity.Data
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             MailMessage message = new MailMessage();
-            message.From = new MailAddress("wmsanchez11@hotmail.com");
+            message.From = new MailAddress("HuellitasGuate@HuellitasGuate.somee.com");
             message.To.Add(email);
             message.Subject = subject;
             message.Body = htmlMessage;
             message.IsBodyHtml = true;
-            SmtpClient client = new SmtpClient("smtp.office365.com", 587);
-            client.EnableSsl = true;
+            SmtpClient client = new SmtpClient("smtp.HuellitasGuate.somee.com", 25);
+            client.EnableSsl = false;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("wmsanchez11@hotmail.com", "Seguridad2023$");
+            client.Credentials = new NetworkCredential("HuellitasGuate@HuellitasGuate.somee.com", "Marcelo31");
        
             try
             {

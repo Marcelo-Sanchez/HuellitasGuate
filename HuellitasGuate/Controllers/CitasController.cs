@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HuellitasGuate.Data;
 using HuellitasGuate.Models;
 using HuellitasGuate.Areas.Identity.Data;
+using ClosedXML.Excel;
 
 namespace HuellitasGuate.Controllers
 {
@@ -32,8 +33,54 @@ namespace HuellitasGuate.Controllers
                           Problem("Entity set 'HuellitasGuateContext.Citas'  is null.");
         }
 
-        // GET: Citas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> CitasHoy()
+        {
+            var citas = _context.Citas.OrderByDescending(x => x.Fecha).ToList();
+            citas.ForEach(x => {
+                x.Servicio = _context.Servicios.Single(y => y.Id == x.ServicioId);
+            });
+            return _context.Citas != null ?
+                        View(citas) :
+                        Problem("Entity set 'HuellitasGuateContext.Citas'  is null.");
+        }
+
+        public IActionResult ExportarExcel()
+        {
+            var citas = _context.Citas.Include(c => c.Servicio).OrderByDescending(c => c.Fecha).ToList();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Citas");
+
+                // Configura las cabeceras
+                worksheet.Cell(1, 1).Value = "Nombre";
+                worksheet.Cell(1, 2).Value = "Mascota";
+                worksheet.Cell(1, 3).Value = "Servicio";
+                worksheet.Cell(1, 4).Value = "Teléfono";
+                worksheet.Cell(1, 5).Value = "Fecha";
+
+                // Llena los datos de las citas
+                for (var i = 0; i < citas.Count; i++)
+                {
+                    worksheet.Cell(i + 2, 1).Value = citas[i].Nombre;
+                    worksheet.Cell(i + 2, 2).Value = citas[i].Mascota;
+                    worksheet.Cell(i + 2, 3).Value = citas[i].Servicio.Nombre;
+                    worksheet.Cell(i + 2, 4).Value = citas[i].Telefono;
+                    worksheet.Cell(i + 2, 5).Value = citas[i].Fecha;
+                }
+
+                // Guarda el archivo Excel en la respuesta
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Citas.xlsx");
+                }
+            }
+
+        }
+
+            // GET: Citas/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Citas == null)
             {

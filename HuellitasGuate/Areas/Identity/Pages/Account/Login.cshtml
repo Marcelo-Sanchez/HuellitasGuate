@@ -5,7 +5,7 @@
 }
 
 <style>
-    /* Agrega tus estilos CSS personalizados aquí */
+    
     body {
         background-color: #f4f4f4;
     }
@@ -84,6 +84,7 @@
         <div class="form-group">
             <button id="login-submit" type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
         </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
     </form>
     <p>
         <a id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>

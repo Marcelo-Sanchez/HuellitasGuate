@@ -1,0 +1,94 @@
+﻿@model DashboardStats
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            color: #007bff;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-text {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border-radius: 5px;
+        }
+
+            .btn-info:hover {
+                background-color: #117a8b;
+                border-color: #117a8b;
+            }
+
+        .fa-file-excel {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-title">Dashboard Citas</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h3>Total de Citas</h3>
+                        <p class="card-text">@Model.TotalCitas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h3>Citas para Hoy</h3>
+                        <p class="card-text">@Model.CitasHoy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <a asp-controller="Citas" asp-action="ExportarExcel" class="btn btn-info">
+                    <i class="fas fa-file-excel"></i> Descargar Todas la Citas - Reporte en Excel
+                </a>
+
+            </div>
+        </div>
+     
+    </div>
+</body>
+</html>

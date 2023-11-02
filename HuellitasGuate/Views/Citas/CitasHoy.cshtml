@@ -1,0 +1,102 @@
+﻿@model IEnumerable<HuellitasGuate.Models.Cita>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .btn {
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #117a8b;
+            border-color: #117a8b;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #bd2130;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Agenda de Citas</h1>
+
+        <!-- Botones en un grupo -->
+        <div class="btn-group">
+            <a asp-action="Create" class="btn btn-primary">Crear Nueva Cita</a>
+            <a asp-action="Index" class="btn btn-info">Todas la citas</a>
+        </div>
+
+        <h2>Citas para Hoy</h2>
+        @foreach (var item in Model)
+        {
+            var hoy = DateTime.Today;
+            if (item.Fecha.HasValue && item.Fecha.Value.Date == hoy)
+            {
+                <div class="card">
+                    <h4>@item.Nombre</h4>
+                    <p><strong>Mascota:</strong> @item.Mascota</p>
+                    <p><strong>Servicio:</strong> @item.Servicio.Nombre</p>
+                    <p><strong>Teléfono:</strong> @item.Telefono</p>
+                    <p><strong>Fecha:</strong> @item.Fecha</p>
+                    <p><strong>DPI:</strong> @item.Dpi</p>
+                    <p><strong>Correo:</strong> @item.Correo</p>
+                    <p><strong>Descripción:</strong> @item.Descripcion</p>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+</body>
+</html>

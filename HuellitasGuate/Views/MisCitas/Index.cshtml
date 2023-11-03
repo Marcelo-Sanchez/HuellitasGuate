@@ -2,10 +2,40 @@
 
 @{
     ViewData["Title"] = "Mis Citas";
+
+    // Calcula el número de citas para hoy
+    var citasHoy = Model.Count(c => c.Fecha.HasValue && c.Fecha.Value.Date == DateTime.Today);
+    // Calcula el total de citas
+    var totalCitas = Model.Count();
 }
 
 <div class="container my-5">
-    <h1 class="text-center">Mis Citas</h1>
+    <div class="text-center">
+        <div class="card bg-primary text-white p-5 rounded">
+            <div class="card-body">
+                <h1 class="card-title">Panel de Control</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-info text-white rounded">
+                            <div class="card-body">
+                                <h3 class="card-title">Total de Citas</h3>
+                                <p class="card-text">@totalCitas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-success text-white rounded">
+                            <div class="card-body">
+                                <h3 class="card-title">Citas para Hoy</h3>
+                                <p class="card-text">@citasHoy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="text-center mt-4">Mis Citas</h1>
 
     <div class="text-center">
         <a asp-action="Create" class="btn btn-primary mb-3">Crear Nueva Cita</a>
